@@ -1,2 +1,2 @@
 # new
-my first github 
+my first git project
