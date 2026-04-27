@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "installCommand": "npx pnpm@9.15.0 install --shamefully-hoist",
-  "buildCommand": "cd artifacts/kundali && npx pnpm@9.15.0 exec vite build --config vite.config.ts",
-  "outputDirectory": "artifacts/kundali/dist",
-  "build": {
-    "env": {
-      "PORT": "3000",
-      "BASE_PATH": "/"
+  "builds": [
+    {
+      "src": "artifacts/kundali/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
+  ],
+  "env": {
+    "PORT": "3000",
+    "BASE_PATH": "/"
   }
 }
