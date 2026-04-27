@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "cd artifacts/kundali && npx pnpm@9.15.0 run build",
   "installCommand": "npx pnpm@9.15.0 install",
+  "buildCommand": "npx pnpm@9.15.0 --filter @workspace/kundali run build",
   "outputDirectory": "artifacts/kundali/dist/public",
   "env": {
     "PORT": "3000",
