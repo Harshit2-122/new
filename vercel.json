@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npx pnpm@9.15.0 install",
+  "installCommand": "npx pnpm@9.15.0 install --shamefully-hoist",
   "buildCommand": "npx pnpm@9.15.0 --filter @workspace/kundali run build",
   "build": {
     "env": {
