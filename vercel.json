@@ -6,5 +6,11 @@
   "env": {
     "PORT": "3000",
     "BASE_PATH": "/"
+  },
+  "build": {
+    "env": {
+      "PORT": "3000",
+      "BASE_PATH": "/"
+    }
   }
 }
