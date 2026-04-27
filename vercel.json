@@ -2,7 +2,6 @@
   "version": 2,
   "installCommand": "npx pnpm@9.15.0 install",
   "buildCommand": "npx pnpm@9.15.0 --filter @workspace/kundali run build",
-  "outputDirectory": "artifacts/kundali/dist",
   "build": {
     "env": {
       "PORT": "3000",
