@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "installCommand": "npm i -g pnpm@9.15.0 && pnpm install",
+  "buildCommand": "cd artifacts/kundali && pnpm run build",
+  "outputDirectory": "artifacts/kundali/dist/public",
+  "env": {
+    "PORT": "3000",
+    "BASE_PATH": "/"
+  }
+}
