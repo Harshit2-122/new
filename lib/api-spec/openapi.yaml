@@ -1,0 +1,129 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: kundali
+    description: Vedic astrology Kundali generation
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /kundali/generate:
+    post:
+      operationId: generateKundali
+      tags: [kundali]
+      summary: Generate a comprehensive Vedic astrology reading (SSE stream)
+      description: |
+        Takes the user's birth details and current life concerns, returns a
+        comprehensive Vedic astrology Kundali reading as a Server-Sent Events
+        stream. Each event is a JSON object with either `{ content: string }`
+        for text chunks or `{ done: true }` to signal completion.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateKundaliBody"
+      responses:
+        "200":
+          description: SSE stream of reading chunks
+          content:
+            text/event-stream: {}
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KundaliError"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    KundaliError:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+    GenerateKundaliBody:
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: Full birth name
+          minLength: 1
+        gender:
+          type: string
+          description: Gender
+          enum: [male, female, other]
+        dateOfBirth:
+          type: string
+          description: Date of birth in DD/MM/YYYY format
+          minLength: 1
+        timeOfBirth:
+          type: string
+          description: Time of birth (HH:MM 24h or with AM/PM)
+          minLength: 1
+        timeAccuracy:
+          type: string
+          description: Whether the birth time is exact, approximate, or unknown
+          enum: [exact, approximate, unknown]
+        placeOfBirth:
+          type: string
+          description: City, State, Country of birth
+          minLength: 1
+        currentCity:
+          type: string
+          description: Current city of residence
+          minLength: 1
+        relationshipStatus:
+          type: string
+          description: Current relationship status
+          enum: [single, dating, married, divorced, separated, widowed]
+        careerField:
+          type: string
+          description: Career field or profession
+          minLength: 1
+        concerns:
+          type: array
+          description: Major current life concerns
+          items:
+            type: string
+        additionalNotes:
+          type: string
+          description: Optional free-text extra context from the user
+      required:
+        - fullName
+        - gender
+        - dateOfBirth
+        - timeOfBirth
+        - timeAccuracy
+        - placeOfBirth
+        - currentCity
+        - relationshipStatus
+        - careerField
+        - concerns

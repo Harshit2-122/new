@@ -1,0 +1,14 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Imsf8lJcyF7ahAxF6xj6S"
+uri = "file://artifacts/kundali/public/hero-bg.png"
+type = "image"
+title = "Celestial night sky with constellations"
+
+[[generated]]
+id = "XnkV_ohiajqTd9H-MQGb1"
+uri = "file://artifacts/kundali/public/mandala.png"
+type = "image"
+title = "Golden yantra mandala"
